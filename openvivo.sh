@@ -69,8 +69,7 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 	while :
 	do
 	clear
-  
-		echo "&&&&&&& OpenVPN já está instalado &&&&&&&&&&&&"
+	
     echo "Script adaptado por: @MrRobotz"
     echo ""
     echo "TELEGRAM: @MrRobotz / @kelven350z"
@@ -197,13 +196,32 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 	done
 else
 	clear
-	echo 'Bem vindo ao instalador OpenVPN "@Guilhermevps" installer'
-	echo ""
+	echo "Script adaptado por: @MrRobotz"
+    	echo ""
+	echo "TELEGRAM: @MrRobotz / @kelven350z"
+	echo "FACEBOOK: /kelven350z"
+    	echo ""
+   	echo "=   SCRIPT OpenVPN+Payload     ="
+   	echo ""
+    	echo "#script instalador para Debian, Ubuntu e CentOS"
+    	echo "#Esse script irá trabalhar no Debian, Ubuntu, CentOS e provavelmente outros distros # das mesmas famílias, embora nenhum suporte é oferecido para eles."
+    	echo "#mas irá funcionar se você simplesmente deseja configurar uma VPN no"
+    	echo "#seu Debian/Ubuntu/CentOS. Ele foi projetado para ser tão"
+    	echo "#discreto e universal quanto possível."
+    	echo ""
+    	echo "OBS: É EXTREMAMENTE NECESSARIO CONFIGURAR UM PROXY EM SEU SERVIDOR RODANDO NA PORTA 80,"
+    	echo "CASO CONTRARIO NÃO IRA FUNCIONAR"
+    	echo ""
+    	echo "@@@ MODIFICAÇÕES FEITAS PELO SCRIPT: @@@"
+    	echo ""
+    	echo "-Intalar OpenVPN"
+    	echo "-Adicionar uma payload no arquivo criado com extensão .ovpn (É necessario configurar seu servidor para rodar proxy na porta 80"
+    	echo "-Adiciona um usuario no servidor"
 	# OpenVPN instalador e criação do primeiro usuario
 	echo "Responda as perguntas para iniciar a instalação"
 	echo "Responda corretamente"
 	echo ""
-	echo "Primeiro precisaremos do ip de sua maquina,este ip está correto ?"
+	echo "Primeiro precisaremos do ip de sua maquina, este ip está correto ?"
 	echo "listening to."
 	read -p "IP address: " -e -i $IP IP
 	echo ""
@@ -221,7 +239,7 @@ else
 	esac
 	echo ""
 	echo "Qual porta você deseja usar ?"
-	read -p "Port: " -e -i 1194 PORT
+	read -p "Port: " -e -i 123 PORT
 	echo ""
 	echo "Qual DNS você deseja usar ?"
 	echo "   1) Sistema(Recomendado)"
@@ -277,6 +295,7 @@ proto $PROTOCOL
 dev tun
 sndbuf 0
 rcvbuf 0
+float
 ca ca.crt
 cert server.crt
 key server.key
@@ -315,15 +334,16 @@ ifconfig-pool-persist ipp.txt" > /etc/openvpn/server.conf
 		;;
 	esac
 	echo "keepalive 10 120
-cipher AES-256-CBC
-comp-lzo
-user nobody
-group $GROUPNAME
-persist-key
-persist-tun
-status openvpn-status.log
-verb 3
-crl-verify crl.pem" >> /etc/openvpn/server.conf
+	cipher AES-256-CBC
+	comp-lzo
+	user nobody
+	group $GROUPNAME
+	persist-key
+	persist-tun
+	float
+	status openvpn-status.log
+	verb 3
+	crl-verify crl.pem" >> /etc/openvpn/server.conf
 	# Enable net.ipv4.ip_forward for the system
 	sed -i '/\<net.ipv4.ip_forward\>/c\net.ipv4.ip_forward=1' /etc/sysctl.conf
 	if ! grep -q "\<net.ipv4.ip_forward\>" /etc/sysctl.conf; then
@@ -410,12 +430,13 @@ proto $PROTOCOL
 sndbuf 0
 rcvbuf 0
 remote $IP $PORT
-http-proxy-option CUSTOM-HEADER X-Online-Host  sdp.vivo.com.br
+http-proxy-option CUSTOM-HEADER X-Online-Host  www.timbeta.com.br
 http-proxy $IP 80
 resolv-retry infinite
 nobind
 persist-key
 persist-tun
+floar
 remote-cert-tls server
 cipher AES-256-CBC
 comp-lzo
@@ -427,6 +448,6 @@ verb 3" > /etc/openvpn/client-common.txt
 	echo ""
 	echo "Concluido!"
 	echo ""
-	echo "Seu arquivo está disponivel em" ~/"$CLIENT.ovpn"
+	echo "Seu arquivo está disponivel em" ~/"$CLIENT.ovpn sou o bixão mesmo né ? by: @mrrobotz"
 	echo "Para mais opções digite (bash openvivo.sh)!"
 fi
