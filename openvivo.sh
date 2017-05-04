@@ -430,7 +430,7 @@ proto $PROTOCOL
 sndbuf 0
 rcvbuf 0
 remote $IP $PORT
-http-proxy-option CUSTOM-HEADER X-Online-Host  www.timbeta.com.br
+http-proxy-option CUSTOM-HEADER X-Online-Host  sdp.vivo.com.br
 http-proxy $IP 80
 resolv-retry infinite
 nobind
